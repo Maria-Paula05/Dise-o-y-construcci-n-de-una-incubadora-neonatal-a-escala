@@ -1,4 +1,4 @@
-# Dise-o-y-construcci-n-de-una-incubadora-neonatal-a-escala
+
 # Informe de laboratorio: Diseño y construcción de una incubadora neonatal a escala
 
 **Asignatura:** Instrumentación Biomédica y Biosensores  
