@@ -25,7 +25,7 @@ Reconocer la importancia de las incubadoras neonatales en la salud del neonato.
 - Identificar las partes principales que componen una incubadora neonatal.
 - Desarrollar un sistema que emule el modo de operación de una incubadora neonatal.
 - Evaluar cómo impacta el control de variables como temperatura.
-- -Evaluar el peso del 
+- -Evaluar el peso mediante la galga extensiométrica.
 
 ## 3. Marco teórico
 
@@ -103,7 +103,7 @@ La guía plantea la posibilidad de incorporar una galga extensiométrica o senso
 n el prototipo de incubadora se empleó un controlador ON/OFF para regular la temperatura interna. El principio de funcionamiento consiste en encender la fuente de calor cuando la temperatura medida es menor al valor mínimo deseado, y apagarla cuando supera el valor máximo establecido. Así, el sistema no mantiene una temperatura exactamente constante en un solo punto, sino dentro de un intervalo de control. En este caso, por ejemplo, el calefactor se enciende cuando la temperatura baja de 35 °C y se apaga cuando supera los 37 °C, permitiendo conservar un ambiente térmico adecuado dentro de la incubadora.
 A continuación, se encuentra el diagrama de bloques de la planta y el controlador:
 
-<img width="766" height="493" alt="image" src="https://github.com/user-attachments/assets/9a305600-cf69-4577-82f6-93dca1283e13" />
+<img width="766" height="493" alt="image" src="https://github.com/user-attachments/assets/8adfc4db-0db7-4b73-872b-d0fe43b8d389" />
 
 **Figura 1.** Simulación del sistema de control de temperatura.
 
@@ -136,13 +136,18 @@ Ese bloque no está calentando todavía por sí solo; más bien está diciendo:
 si la temperatura está dentro del intervalo permitido, el sistema reconoce que la incubadora está en una condición aceptable,
 si sale del intervalo, se detecta una condición de desviación térmica.
 
-<img width="766" height="493" alt="image" src="https://github.com/user-attachments/assets/87461065-e4ef-4cd9-af50-604846692110" />
+<img width="980" height="495" alt="image" src="https://github.com/user-attachments/assets/53fc0d4d-d56e-4c1c-a374-8cb37f68e15c" />
+
 
 **Figura 2.** Simulación del sistema de control de temperatura.
 
 En conjunto, los dos diagramas muestran un sistema de control de temperatura para incubadora neonatal basado en una estrategia ON/OFF. El primer diagrama se encarga de verificar si la temperatura medida permanece dentro de un rango definido entre Tmin y Tmax, mientras que el segundo integra esta lógica con el modelo dinámico térmico de la incubadora, considerando la referencia de temperatura, la acción del actuador y la influencia de la temperatura ambiente. De esta manera, el sistema permite mantener la temperatura interna en una banda adecuada de operación, evitando tanto el enfriamiento como el sobrecalentamiento.
 
-<img width="980" height="495" alt="image" src="https://github.com/user-attachments/assets/1ff05d9f-5cc3-4e84-b07e-38b604e0cc4c" />
+<img width="696" height="623" alt="image" src="https://github.com/user-attachments/assets/cc5e24f6-b7dc-42cd-85b3-001b3bfd65e2" />
+
+**Figura 3.** Resúesta de simulación del sistema de control de temperatura.
+
+A continuación se puede observar el código utilizado donde están los parámetros del controlador:
 
 ```
 %% PARAMETROS INCUBADORA - CONTROL ON/OFF CON RELAY
@@ -188,7 +193,9 @@ En la siguiente imagen puede observarse una simulación del circuito de medició
 <img width="1024" height="359" alt="image" src="https://github.com/user-attachments/assets/712a7f59-ab80-4ffc-829c-fed1b15e4454" />
 
 
-El código utilizado para realizar la sección de medición de peso fue el siguiente programado en ARDUINOIDE con un microcontrolador Arduino UNO. Se usó una galga extensiométrica de 5 kg junto con su módulo HX711 y los datos se visualizaron en una pantalla OLED.
+**Figura 5.** Respuesta de simulación del sistema de control de temperatura.
+
+El código utilizado para realizar la sección de medición de peso fue el siguiente programado en ARDUINO IDE con un microcontrolador Arduino UNO. Se usó una galga extensiométrica de 5 kg junto con su módulo HX711 y los datos se visualizaron en una pantalla OLED.
 
 ```
 include <Wire.h>
@@ -296,13 +303,13 @@ void loop() {
 
 <img width="900" height="1600" alt="image" src="https://github.com/user-attachments/assets/e27c6b1b-a6b1-44b3-808a-6e7b9c7b59e2" />
 
-**Figura 2.** Simulación del sistema de medición de peso.
+**Figura 6.** Circuito montado del sistema de medición de peso.
 
 ### 6.3 Prototipo construido
 
 <img width="1280" height="960" alt="image" src="https://github.com/user-attachments/assets/7d7df6d4-5f64-439d-aedf-9b408e8390d2" />
 
-**Figura 3.** Vista general de la incubadora neonatal a escala.
+**Figura 7.** Vista general de la incubadora neonatal a escala.
 
 
 ## 7. Resultados
@@ -313,71 +320,95 @@ Se identificaron como elementos principales del sistema: la cubierta, el sensor 
 
 | Componente | Función |
 |---|---|
-| [Completar] | [Completar] |
-| [Completar] | [Completar] |
-| [Completar] | [Completar] |
+| Sensor de temeratura | cumple la función de medir continuamente la temperatura interna de la incubadora. Esta medición permite conocer el estado térmico del sistema en tiempo real y sirve como variable de entrada para el controlador, el cual decide si es necesario activar o desactivar el sistema de calentamiento.|
+| Sistema de calentamiento | es el encargado de suministrar la energía térmica necesaria para elevar o mantener la temperatura dentro de los valores requeridos. Su función principal es compensar las pérdidas de calor hacia el ambiente y garantizar que el interior de la incubadora conserve condiciones adecuadas para el neonato. |
+| Sistema de medición de peso | se encarga de determinar el peso del neonato o de la carga ubicada en la incubadora. Esta función es importante porque permite hacer seguimiento al crecimiento, controlar variaciones de masa y apoyar la vigilancia clínica del paciente sin retirarlo innecesariamente del entorno controlado. |
+|Sistema de indicación visual |permite mostrar al usuario variables importantes del funcionamiento, como la temperatura y el peso medido. Su función es facilitar la supervisión del estado de la incubadora de manera rápida y directa, sin necesidad de equipos externos de monitoreo.|
+|Ventilador|tiene como función distribuir de manera uniforme el aire caliente dentro de la incubadora. Esto evita zonas con temperaturas desiguales y mejora la homogeneidad térmica en todo el habitáculo, favoreciendo un ambiente más estable.|
 
 ### 7.2 Resultado del sistema de control de temperatura
 
-**[Insertar aquí la descripción de lo observado en la simulación o en el montaje]**
+En la siguiente imagen puede observarse las temperaturas medidas por el termistor dentro de la incubadora donde se puede ibservar que en los rangos se enciende el bonnbilllo, si pasa el ranfo se apagará.
 
-- Temperatura mínima observada: **[Completar]**
-- Temperatura máxima observada: **[Completar]**
-- Temperatura promedio: **[Completar]**
-- Estado del sistema: **[Completar]**
+<img width="739" height="646" alt="image" src="https://github.com/user-attachments/assets/a4c1f46f-90a5-4e22-8d5f-f193ba5ae28b" />
 
-**[Insertar aquí gráfica o tabla de temperatura vs tiempo, si la tienen]**
+**Figura 8.** Valores en monitor serial.
 
+- Temperatura mínima observada: 35.0
+- Temperatura máxima observada: 38.6
+- Temperatura promedio:36.8
+  
 ### 7.3 Resultado del sistema de medición de peso
 
-**[Insertar aquí la descripción del comportamiento del sistema de peso]**
+- Valor real: 250 g
+- Valor medido: 200 g
+- Error absoluto: 50g
+- Error porcentual: 20%
+  
+Durante la prueba de calibración del sistema de medición de peso se utilizó un patrón de 250 g, obteniéndose una lectura de 200 g. Esto corresponde a un error absoluto de 50 g y un error porcentual del 20 %. Aunque el sistema logró detectar y registrar la carga aplicada, los resultados evidencian que aún existe una desviación considerable respecto al valor real, por lo que se hace necesario realizar un ajuste más preciso del factor de calibración y mejorar las condiciones mecánicas del montaje para aumentar la exactitud de la medición
 
-- Patrón utilizado: **[Completar]**
-- Valor real: **[Completar]**
-- Valor medido: **[Completar]**
-- Error absoluto: **[Completar]**
-- Error porcentual: **[Completar]**
+<img width="960" height="1280" alt="image" src="https://github.com/user-attachments/assets/984feab1-005d-42fb-85d9-eacf95982a31" />
+
+**Figura 9.** Valores en monitor serial.
 
 ### 7.4 Estimación de costos
 
-| Componente | Cantidad | Costo unitario | Costo total |
-|---|---:|---:|---:|
-| [Completar] | [ ] | [ ] | [ ] |
-| [Completar] | [ ] | [ ] | [ ] |
-| [Completar] | [ ] | [ ] | [ ] |
-| **Total** |  |  | **[Completar]** |
+## Estimado de costos del prototipo de incubadora neonatal
+
+En la siguiente, se presenta un estimado aproximado de los costos de los materiales empleados en la construcción del prototipo:
+
+| Material | Costo aproximado (COP) |
+|---|---:|
+| Software de simulación de circuitos eléctricos | Gratuito |
+| Cable UTP | 5.000 – 10.000 |
+| Ventilador | 15.000 – 30.000 |
+| Transformador 502 | 12.000 – 25.000 |
+| Puente rectificador | 2.000 – 6.000 |
+| Termistor | 2.000 – 8.000 |
+| Resistencias de varios valores | 3.000 – 10.000 |
+| Capacitores de 2200 µF | 4.000 – 10.000 |
+| Galga extensiométrica con módulo HX711 | 16.000 – 22.000 |
+| Bombillo | 3.000 – 8.000 |
+| Relé | 8.000 – 15.000 |
+| Pantalla OLED | 15.000 – 20.000 |
+| Arduino UNO | 37.000 – 48.000 |
+| ESP32 | 25.000 – 40.000 |
+| Caja que asemeja incubadora | 20.000 – 60.000 |
+
+### Total estimado
+
+- **Costo mínimo aproximado:** 167.000 COP  
+- **Costo máximo aproximado:** 312.000 COP  
+
+El costo total del prototipo puede variar dependiendo de la disponibilidad de los materiales, la tienda donde se adquieran los componentes y si algunos de ellos ya se encuentran disponibles previamente en el laboratorio o lugar de trabajo. Este presupuesto corresponde a un valor estimado para fines académicos y de desarrollo del montaje.
 
 ## 8. Análisis de resultados
 
-### 8.1 Análisis del control de temperatura
+## 8.1 Análisis del control de temperatura
 
-El sistema desarrollado fue planteado para mantener la temperatura interna de la cabina dentro del intervalo de 36 °C a 37,5 °C. De manera conceptual, el prototipo representa adecuadamente el principio de control térmico en una incubadora neonatal. Sin embargo, como en esta etapa no se cuenta con mediciones experimentales completas, el análisis se basa principalmente en la lógica de funcionamiento propuesta y en la observación preliminar del montaje y la simulación.
+Los resultados térmicos muestran que el prototipo logró cumplir de manera parcial el objetivo de mantener un ambiente cercano al rango requerido para una incubadora neonatal. El valor promedio de 36.8 °C indica que el sistema operó alrededor del intervalo deseado, lo cual evidencia que la estrategia ON/OFF fue funcional para una aplicación académica básica. Sin embargo, la presencia de una temperatura mínima de 35.0 °C y una máxima de 38.6 °C demuestra que la regulación aún presentó oscilaciones importantes y sobrepasos respecto al rango planteado. Este comportamiento era esperable, ya que el control ON/OFF no corrige de manera continua, sino que conmuta entre encendido y apagado, generando variaciones alrededor de la referencia. Además, la respuesta del sistema estuvo influenciada por la inercia térmica de la cámara, la capacidad del elemento calefactor, la circulación de aire y las pérdidas de calor hacia el ambiente. En consecuencia, aunque el prototipo representa adecuadamente el principio de termorregulación, su desempeño todavía está lejos de la estabilidad y precisión requeridas en una incubadora neonatal real.
 
-En caso de presentarse oscilaciones o variaciones fuera del rango, estas podrían atribuirse a la respuesta del sensor, la inercia térmica del sistema, el aislamiento de la cabina o la estrategia de control utilizada. Por ello, queda pendiente una validación cuantitativa más rigurosa.
+## 8.2 Análisis del sistema de peso
 
-### 8.2 Análisis del sistema de peso
+En el sistema de medición de peso, el error porcentual del 20 % evidencia que el montaje fue funcional, pero todavía insuficiente en términos de exactitud. El hecho de que el sistema registrara 200 g para un patrón de 250 g confirma que la celda de carga, el módulo HX711 y la visualización en OLED operaron correctamente a nivel básico; sin embargo, la diferencia de 50 g revela problemas de calibración y posibles limitaciones mecánicas en el soporte de la galga. En este tipo de sistemas, la precisión depende no solo del factor de calibración programado, sino también de la rigidez estructural, la correcta fijación de la celda y la reducción de vibraciones o deformaciones parásitas. Por ello, el resultado obtenido debe interpretarse como una validación funcional del principio de medición, pero no como una medición suficientemente precisa para una aplicación clínica. Para mejorar el desempeño sería necesario repetir la calibración con varios patrones conocidos, ajustar el montaje mecánico y verificar la linealidad de la respuesta del sensor.
 
-La medición de peso fue concebida como una funcionalidad complementaria del prototipo. Su precisión depende directamente de la calibración del sensor, el acondicionamiento de señal y la estabilidad mecánica del soporte. Dado que aún no se realizaron mediciones comparativas con un patrón conocido, este resultado debe considerarse preliminar.
+## 8.3 Comparación con incubadoras comerciales
 
-### 8.3 Comparación con incubadoras comerciales
-
-Frente a una incubadora comercial, el prototipo desarrollado presenta como principal ventaja su bajo costo y valor didáctico. No obstante, también presenta limitaciones importantes en términos de precisión, confiabilidad, alarmas, monitoreo integral, materiales certificados y cumplimiento normativo.
-
-| Criterio | Prototipo desarrollado | Incubadora comercial |
-|---|---|---|
-| Control de temperatura | Básico / preliminar | Preciso y validado |
-| Medición de peso | Básica / preliminar | Integrada y calibrada |
-| Alarmas | No implementadas | Sí |
-| Control de humedad | No implementado | Sí |
-| Certificación clínica | No | Sí |
-| Costo | Bajo | Alto |
+Frente a una incubadora neonatal comercial, el prototipo desarrollado presenta un valor principalmente formativo y experimental. Su principal fortaleza es haber permitido integrar en un solo montaje conceptos de control térmico, instrumentación, sensado y visualización, utilizando componentes de bajo costo y fácil acceso. No obstante, las diferencias con un equipo clínico real son sustanciales. Mientras una incubadora comercial incorpora control térmico altamente preciso, sensores validados, alarmas, monitoreo continuo, control de humedad, materiales certificados y condiciones de seguridad biomédica, el prototipo construido se limita a reproducir de forma simplificada dos funciones básicas: regulación térmica y estimación de peso. Por tanto, el sistema desarrollado no puede considerarse un sustituto de una incubadora real, sino una aproximación académica útil para comprender sus principios de funcionamiento y reconocer las exigencias técnicas que implica su implementación en un contexto clínico.
 
 ## 9. Conclusiones
 
-1. La práctica permitió comprender que la incubadora neonatal es un sistema biomédico que requiere control preciso de variables críticas, especialmente la temperatura.
-2. El diseño y construcción del prototipo a escala permitió integrar conocimientos de electrónica, instrumentación y control en una aplicación biomédica concreta.
-3. El sistema planteado reproduce de forma didáctica el principio básico de funcionamiento de una incubadora neonatal, aunque todavía no cuenta con la validación necesaria para comparar su desempeño con un equipo clínico real.
-4. Para fortalecer el desarrollo realizado, es necesario complementar el trabajo con mediciones experimentales, calibración del sistema de peso y análisis cuantitativo del comportamiento térmico.
+1.El desarrollo del prototipo permitió comprender que una incubadora neonatal no se limita a suministrar calor, sino que constituye un sistema biomédico en el que deben integrarse medición, control y supervisión de variables críticas para garantizar condiciones adecuadas de soporte al neonato.
+
+2.El sistema de control térmico implementado mediante una estrategia ON/OFF logró mantener la temperatura de la incubadora en un entorno cercano al rango de operación propuesto, con un valor promedio de 36.8 °C. Sin embargo, las variaciones observadas entre 35.0 °C y 38.6 °C evidencian que, aunque el principio de regulación fue funcional, todavía existen oscilaciones y sobrepasos que limitan la precisión del sistema.
+
+3.El sistema de medición de peso permitió detectar y visualizar la carga aplicada mediante una galga extensiométrica, un módulo HX711 y una pantalla OLED, lo que confirma la viabilidad de incorporar esta variable al prototipo. No obstante, la medición obtenida para el patrón de 250 g presentó un error porcentual del 20 %, por lo que el sistema aún requiere una calibración más rigurosa y mejoras mecánicas para aumentar su exactitud.
+
+4.Desde el punto de vista académico, el montaje cumplió con el propósito de representar de forma didáctica las funciones básicas de una incubadora neonatal a escala, integrando conocimientos de electrónica, sensores, acondicionamiento de señal, microcontroladores y control térmico en una sola aplicación.
+
+5.A pesar de su funcionalidad básica y de su bajo costo, el prototipo presenta limitaciones importantes frente a una incubadora neonatal comercial, especialmente en precisión, estabilidad, confiabilidad, alarmas, control de humedad y validación clínica. Por ello, debe entenderse como un desarrollo experimental y formativo, no como un dispositivo apto para uso médico real.
+
+6.Como trabajo futuro, se recomienda optimizar la calibración del sistema de peso, mejorar el montaje estructural de la celda de carga, reducir las oscilaciones térmicas del control ON/OFF y complementar el prototipo con funciones adicionales como alarmas, monitoreo de humedad y una validación experimental más rigurosa de todas las variables medida
 
 ## 10. Preguntas para la discusión
 
