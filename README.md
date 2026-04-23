@@ -100,13 +100,51 @@ La guía plantea la posibilidad de incorporar una galga extensiométrica o senso
 
 ### 6.1 Diseño y simulación del circuito de control de temperatura
 
+n el prototipo de incubadora se empleó un controlador ON/OFF para regular la temperatura interna. El principio de funcionamiento consiste en encender la fuente de calor cuando la temperatura medida es menor al valor mínimo deseado, y apagarla cuando supera el valor máximo establecido. Así, el sistema no mantiene una temperatura exactamente constante en un solo punto, sino dentro de un intervalo de control. En este caso, por ejemplo, el calefactor se enciende cuando la temperatura baja de 35 °C y se apaga cuando supera los 37 °C, permitiendo conservar un ambiente térmico adecuado dentro de la incubadora.
+A continuación, se encuentra el diagrama de bloques de la planta y el controlador:
+
 <img width="766" height="493" alt="image" src="https://github.com/user-attachments/assets/9a305600-cf69-4577-82f6-93dca1283e13" />
+
+**Figura 1.** Simulación del sistema de control de temperatura.
+
+En la siguiente imagen puede observarse un diagrama que corresponde a la lógica de decisión del controlador térmico, donde la entrada u es la temperatura medida dentro de la incubadora.
+
+A partir de esa señal se hacen tres evaluaciones:
+
+Se compara si la temperatura es mayor o igual que Tmin
+Se compara si la temperatura es menor o igual que Tmax
+y luego ambas condiciones se combinan con una compuerta AND
+
+Eso significa que el sistema está verificando si la temperatura está dentro de la banda de operación definida por los límites:
+
+Tmin = temperatura mínima permitida
+Tmax = temperatura máxima permitida
+Qué sale del diagrama
+
+El bloque genera tres salidas:
+
+-Tmin
+-Tmax
+-Una señal lógica que vale 1 si la temperatura está dentro del rango y 0 si está fuera del rango
+
+Los bloques double solo convierten esas señales al tipo numérico para poder visualizarlas o usarlas en Simulink sin problemas de tipo de dato.
+
+Interpretación física
+
+Ese bloque no está calentando todavía por sí solo; más bien está diciendo:
+
+si la temperatura está dentro del intervalo permitido, el sistema reconoce que la incubadora está en una condición aceptable,
+si sale del intervalo, se detecta una condición de desviación térmica.
 
 <img width="766" height="493" alt="image" src="https://github.com/user-attachments/assets/87461065-e4ef-4cd9-af50-604846692110" />
 
+**Figura 2.** Simulación del sistema de control de temperatura.
+
+En conjunto, los dos diagramas muestran un sistema de control de temperatura para incubadora neonatal basado en una estrategia ON/OFF. El primer diagrama se encarga de verificar si la temperatura medida permanece dentro de un rango definido entre Tmin y Tmax, mientras que el segundo integra esta lógica con el modelo dinámico térmico de la incubadora, considerando la referencia de temperatura, la acción del actuador y la influencia de la temperatura ambiente. De esta manera, el sistema permite mantener la temperatura interna en una banda adecuada de operación, evitando tanto el enfriamiento como el sobrecalentamiento.
+
 <img width="980" height="495" alt="image" src="https://github.com/user-attachments/assets/1ff05d9f-5cc3-4e84-b07e-38b604e0cc4c" />
 
-´´´python
+```
 %% PARAMETROS INCUBADORA - CONTROL ON/OFF CON RELAY
 
 clear; clc;
@@ -141,16 +179,18 @@ pert_amp   = -0.03;        % [°C/s]
 
 % Simulacion
 t_sim = 1800;              % [s]
-´´´´
-
-**Figura 1.** Simulación del sistema de control de temperatura.
+```
 
 ### 6.2 Diseño y simulación del sistema de medición de peso
 
+En la siguiente imagen puede observarse una simulación del circuito de medición de peso:
 
-El códico utilizado para realizar la sección de medición de peso fue el siguiente programado en ARDUINOIDE con un microcontrolador Arduino UNO. Se usó una galga extensiométrica de 5 kg junto con su módulo HX711 y los datos se visualizaron en una pantalla OLED.
+<img width="1024" height="359" alt="image" src="https://github.com/user-attachments/assets/712a7f59-ab80-4ffc-829c-fed1b15e4454" />
 
-´´´´python
+
+El código utilizado para realizar la sección de medición de peso fue el siguiente programado en ARDUINOIDE con un microcontrolador Arduino UNO. Se usó una galga extensiométrica de 5 kg junto con su módulo HX711 y los datos se visualizaron en una pantalla OLED.
+
+```
 include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
@@ -252,7 +292,7 @@ void loop() {
 
   delay(60);
 }
-´´´´
+```
 
 <img width="900" height="1600" alt="image" src="https://github.com/user-attachments/assets/e27c6b1b-a6b1-44b3-808a-6e7b9c7b59e2" />
 
