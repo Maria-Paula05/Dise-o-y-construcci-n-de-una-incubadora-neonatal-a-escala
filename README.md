@@ -1,19 +1,16 @@
 
 # Informe de laboratorio: Diseño y construcción de una incubadora neonatal a escala
 
-**Asignatura:** Instrumentación Biomédica y Biosensores  
-**Programa:** Ingeniería Biomédica  
-**Universidad:** Universidad Militar Nueva Granada  
-**Práctica:** Laboratorio 4  
-**Integrantes:** [Nombre 1], [Nombre 2], [Nombre 3]  
-**Docente:** [Nombre del docente]  
-**Fecha:** [Fecha]
+**Asignatura:** Instrumentación Biomédica y Biosensores   
+**Universidad:** Universidad Militar Nueva Granada   
+**Integrantes:** María Paula Fernandez Jiménez. Jhonathan Guevara- Juan Pablo Díaz Rocha
+
 
 ## 1. Introducción
 
 Las incubadoras neonatales son dispositivos biomédicos diseñados para proporcionar un entorno controlado que favorezca la supervivencia y el desarrollo adecuado del recién nacido, especialmente en casos de prematurez o bajo peso. Una de las variables más importantes en este tipo de sistemas es la temperatura, la cual debe mantenerse cercana a los 37 °C, ya que alteraciones térmicas pueden comprometer la estabilidad fisiológica del neonato.
 
-En esta práctica se abordó el diseño y construcción de una incubadora neonatal a escala, capaz de regular la temperatura interna en un rango entre 36 °C y 37,5 °C mediante un sistema de control térmico por convección. Además, se planteó la incorporación de un sistema de medición de peso y una señalización visual mediante LEDs, con el fin de representar de manera didáctica algunas de las funciones básicas de una incubadora neonatal.
+En esta práctica se abordó el diseño y construcción de una incubadora neonatal a escala, capaz de regular la temperatura interna en un rango entre 36 °C y 37,5 °C mediante un sistema de control térmico por convección. Además, se planteó la incorporación de un sistema de medición de peso , con el fin de representar de manera didáctica algunas de las funciones básicas de una incubadora neonatal.
 
 La importancia de esta práctica radica en la aplicación de conceptos de electrónica, instrumentación biomédica y sistemas de control en un contexto clínico simulado, permitiendo comprender la relevancia de mantener condiciones ambientales seguras para el paciente neonatal.
 
@@ -27,21 +24,35 @@ Reconocer la importancia de las incubadoras neonatales en la salud del neonato.
 
 - Identificar las partes principales que componen una incubadora neonatal.
 - Desarrollar un sistema que emule el modo de operación de una incubadora neonatal.
-- Evaluar cómo impacta el control de variables como temperatura, humedad y flujo de aire en la salud del neonato.
+- Evaluar cómo impacta el control de variables como temperatura.
+- -Evaluar el peso del 
 
 ## 3. Marco teórico
 
 ### 3.1 Incubadora neonatal
 
-La incubadora neonatal es un dispositivo médico cuya función es recrear un ambiente controlado que reduzca el riesgo fisiológico en recién nacidos, en especial en prematuros. Esto implica mantener condiciones estables de temperatura y, en sistemas más avanzados, humedad, oxigenación y monitoreo continuo.
+Una incubadora para bebés prematuros o neonatos es un equipo indispensable en una unidad de tratamiento intensivo neonatal. Consta de una cámara cerrada de material transparente que incluye un acolchado esterilizado para acostar al bebé, con calefacción por convección, filtro de aires exterior, ventanas para manipular al paciente, y diversos y sofisticados sistemas de monitoreo que incluyen control de peso, respiración, cardíaco y de actividad cerebral.
 
-### 3.2 Control de temperatura
+La cámara logra limitar la exposición del recién nacido a los gérmenes, y la complejidad de los equipos, permiten también diferentes tratamientos de cuidados intensivos, incluyendo terapia intravenosa, suplemento de oxígeno, soporte mecánico de la respiración y administración de fármacos.
 
-La regulación térmica puede implementarse mediante un sistema de lazo cerrado. En este esquema, un sensor mide la temperatura interna, dicha lectura se compara con un valor o rango de referencia, y con base en ello se activa o desactiva un actuador térmico. En esta práctica, el rango de interés se estableció entre 36 °C y 37,5 °C.
+Las incubadoras han resultado fundamentales a partir del siglo XX para lograr altas reducciones de la tasa de mortalidad infantil en todo el mundo, constituyendo uno de los parámetros claves que explican la diferencia de tasas entre países desarrollados y otros con menor nivel tecnológico.
+
+En la actualidad existen posiciones alternativas que promueven el reemplazo de la incubadora por el llamado método canguro, incluyendo estudios efectuados en varios países que relativizan el uso de la incubadora salvo en el caso de patologías graves.
+
+### 3.2 Termorregulación y termovigilancia
+
+En comparación con un adulto, un bebé prematuro no dispone de mecanismos como la sudoración y los escalofríos y su metabolismo también es limitado. La única respuesta al estrés por frío es la vasoconstricción, que se observa con la Termo-monitorización. Por lo tanto, el objetivo de los cuidados de enfermería debe ser mantener al bebé dentro de su rango de "termoneutralidad" para proporcionar las mejores condiciones de crecimiento y maduración; para esto la incubadora neonatal tiene esta funci╬n de controlar la temperatura en una temperatura que vaya de 36-37.5 °C.
+
+### 3.2.1 Control de temperatura
+La medición de longitud es un indicador antropométrico de bienestar para neonatos en cuidados intensivos. Su medición precisa y seriada es clave para optimizar el diagnóstico e indicaciones nutricionales. Sin embargo, es un desafío en términos de precisión y confiabilidad.
+
+### 3.3 Importancia de medición de peso en neonatos
+
+La medición del peso en una incubadora neonatal es fundamental para el seguimiento clínico del recién nacido, ya que permite evaluar el crecimiento, detectar alteraciones del balance hídrico y ajustar con precisión la administración de líquidos, nutrición y medicamentos. En pacientes prematuros o de bajo peso, pequeñas variaciones ponderales pueden reflejar cambios clínicamente relevantes, por lo que el monitoreo del peso constituye un parámetro esencial de seguridad y de toma de decisiones
 
 ### 3.3 Medición de peso
 
-La guía plantea la posibilidad de incorporar una galga extensiométrica o sensor de fuerza para estimar el peso del recién nacido, mostrando el resultado en una pantalla LCD o en displays de 7 segmentos. Esta variable es clínicamente importante debido a su utilidad en el seguimiento neonatal.
+La guía plantea la posibilidad de incorporar una galga extensiométrica o sensor de fuerza para estimar el peso del recién nacido, mostrando el resultado en una pantalla LCD , OLED o en displays de 7 segmentos. Esta variable es clínicamente importante debido a su utilidad en el seguimiento neonatal.
 
 ## 4. Materiales
 
@@ -53,20 +64,22 @@ La guía plantea la posibilidad de incorporar una galga extensiométrica o senso
 
 ### 4.2 Materiales del estudiante
 
-- Computador con conexión a internet
+- Computadores con conexión a internet
 - Software de simulación de circuitos eléctricos
-- Regleta de protoboard
 - Cable UTP
 - Ventilador
-- LM317 y LM337
-- Diodo 1N4007
 - Transformador 502
-- Fusible e interruptor
 - Puente rectificador
 - Termistor
-- Diodos LED
 - Resistencias de varios valores
 - Capacitores de 2200 µF
+- Galga extensiometrica junto con módulo HX711.
+- Bombillo
+- Relé
+- Pantalla OLED
+- Arduino UNO
+- ESP32
+- Caja que asemeja incubadora.
 
 ## 5. Procedimiento
 
@@ -74,41 +87,183 @@ La guía plantea la posibilidad de incorporar una galga extensiométrica o senso
 
 1. Se realizó una revisión bibliográfica para identificar las partes principales de una incubadora neonatal y la función de cada una.
 2. Se diseñó y simuló un circuito eléctrico a modo de sistema de control de lazo cerrado, capaz de mantener la temperatura entre 36 °C y 37,5 °C.
-3. Se diseñó y simuló un circuito eléctrico para medir el peso y mostrarlo mediante una pantalla LCD o displays de 7 segmentos.
+3. Se diseñó y simuló un circuito eléctrico para medir el peso y mostrarlo mediante una pantalla OLED.
 
 ## 5.2 Parte B
 
 1. Se construyó un modelo de incubadora neonatal a escala con cubierta transparente, mecanismo de apertura y cierre, y dimensiones aproximadas acordes con la guía.
 2. Se implementó un sistema de regulación térmica por convección, utilizando un ventilador y un elemento resistivo como fuente de calor.
-3. Se integró un panel de tres LEDs para indicar si la temperatura se encontraba por debajo del rango, dentro del rango o por encima del rango establecido.
-4. Se incorporó un sistema básico de estimación de peso.
-5. Se realizó una estimación del costo del sistema desarrollado.
+3. Se incorporó un sistema básico de estimación de peso.
+4. Se realizó una estimación del costo del sistema desarrollado.
 
 ## 6. Evidencia del desarrollo
 
 ### 6.1 Diseño y simulación del circuito de control de temperatura
 
-**[Insertar aquí captura de la simulación del circuito de control de temperatura]**
+<img width="766" height="493" alt="image" src="https://github.com/user-attachments/assets/9a305600-cf69-4577-82f6-93dca1283e13" />
+
+<img width="766" height="493" alt="image" src="https://github.com/user-attachments/assets/87461065-e4ef-4cd9-af50-604846692110" />
+
+<img width="980" height="495" alt="image" src="https://github.com/user-attachments/assets/1ff05d9f-5cc3-4e84-b07e-38b604e0cc4c" />
+
+´´´python
+%% PARAMETROS INCUBADORA - CONTROL ON/OFF CON RELAY
+
+clear; clc;
+
+% Requisitos de la guia
+Tmin = 36.0;              % [°C]
+Tmax = 37.5;              % [°C]
+Tref = 37.0;              % [°C]
+
+% Condiciones termicas
+Tamb = 24.0;              % [°C]
+T0   = 24.0;              % [°C]
+
+% Planta termica de primer orden
+tau  = 220;               % [s]
+Kcal = 0.07;              % [°C/s] por unidad de control
+
+% Entrada al Relay: e = Tref - T
+% Enciende cuando T <= 36  -> e >= 1.0
+% Apaga   cuando T >= 37.5 -> e <= -0.5
+relay_on  = Tref - Tmin;   % = 1.0
+relay_off = Tref - Tmax;   % = -0.5
+
+% Salida del relay
+u_on  = 1;                 % calefactor encendido
+u_off = 0;                 % calefactor apagado
+
+% Perturbacion externa
+t_pert_ini = 900;          % [s]
+t_pert_fin = 960;          % [s]
+pert_amp   = -0.03;        % [°C/s]
+
+% Simulacion
+t_sim = 1800;              % [s]
+´´´´
 
 **Figura 1.** Simulación del sistema de control de temperatura.
 
 ### 6.2 Diseño y simulación del sistema de medición de peso
 
-**[Insertar aquí captura de la simulación del sistema de medición de peso]**
+
+El códico utilizado para realizar la sección de medición de peso fue el siguiente programado en ARDUINOIDE con un microcontrolador Arduino UNO. Se usó una galga extensiométrica de 5 kg junto con su módulo HX711 y los datos se visualizaron en una pantalla OLED.
+
+´´´´python
+include <Wire.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
+#include <DFRobot_HX711.h>
+
+#define SCREEN_WIDTH 128
+#define SCREEN_HEIGHT 64
+#define OLED_RESET -1
+
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+DFRobot_HX711 balanza(3, 2);   // DT=3, SCK=2
+
+long offset = 0;
+float calibracion = 1992.0;    // luego la ajustas fino
+
+float pesoFiltrado = 0.0;
+float alpha = 0.35;            // entre más alto, más rápido responde
+
+float leerPesoRapido(int n) {
+  float suma = 0;
+  for (int i = 0; i < n; i++) {
+    suma += balanza.readWeight();
+    delay(8);
+  }
+  return suma / n;
+}
+
+void setup() {
+  Serial.begin(9600);
+  delay(1000);
+
+  if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) {
+    while (1);
+  }
+
+  display.clearDisplay();
+  display.setTextColor(SSD1306_WHITE);
+  display.setTextSize(1);
+  display.setCursor(0, 20);
+  display.println("Iniciando...");
+  display.display();
+  delay(1500);
+
+  display.clearDisplay();
+  display.setCursor(0, 10);
+  display.println("Sin peso");
+  display.println("Haciendo tara...");
+  display.display();
+
+  delay(3000);
+
+  offset = balanza.averageValue(10);   // menos muestras = mas rapido
+  balanza.setOffset(offset);
+  balanza.setCalibration(calibracion);
+
+  pesoFiltrado = 0.0;
+
+  display.clearDisplay();
+  display.setCursor(0, 20);
+  display.println("Balanza lista");
+  display.display();
+  delay(1000);
+}
+
+void loop() {
+  float peso = leerPesoRapido(3);
+
+  // invierte solo si tu lectura esta al reves
+  peso = -peso;
+
+  // zona muerta cerca de cero para eliminar negativos pequenos
+  if (peso > -3.0 && peso < 3.0) {
+    peso = 0.0;
+  }
+
+  // filtro exponencial: estable pero mas rapido
+  pesoFiltrado = alpha * peso + (1.0 - alpha) * pesoFiltrado;
+
+  // evita que muestre basura cerca de cero
+  if (pesoFiltrado > -2.0 && pesoFiltrado < 2.0) {
+    pesoFiltrado = 0.0;
+  }
+
+  Serial.print("Peso: ");
+  Serial.print(pesoFiltrado, 1);
+  Serial.println(" g");
+
+  display.clearDisplay();
+  display.setTextSize(1);
+  display.setCursor(0, 0);
+  display.println("PESO");
+
+  display.setTextSize(3);
+  display.setCursor(8, 25);
+  display.print(pesoFiltrado, 1);
+  display.print(" g");
+
+  display.display();
+
+  delay(60);
+}
+´´´´
+
+<img width="900" height="1600" alt="image" src="https://github.com/user-attachments/assets/e27c6b1b-a6b1-44b3-808a-6e7b9c7b59e2" />
 
 **Figura 2.** Simulación del sistema de medición de peso.
 
 ### 6.3 Prototipo construido
 
-**[Insertar aquí fotografía general del prototipo]**
+<img width="1280" height="960" alt="image" src="https://github.com/user-attachments/assets/7d7df6d4-5f64-439d-aedf-9b408e8390d2" />
 
 **Figura 3.** Vista general de la incubadora neonatal a escala.
 
-### 6.4 Detalles del montaje
-
-**[Insertar aquí fotografías adicionales del ventilador, sistema térmico, LEDs, sensor de peso, cableado, etc.]**
-
-**Figura 4.** Detalles internos del prototipo.
 
 ## 7. Resultados
 
