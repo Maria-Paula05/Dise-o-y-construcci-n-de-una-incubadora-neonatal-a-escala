@@ -59,7 +59,9 @@ La guía plantea la posibilidad de incorporar una galga extensiométrica o senso
 ### 4.1 Materiales del laboratorio
 
 - Multímetro digital con sondas
+  
 - Osciloscopio digital
+  
 - Fuente de voltaje DC
 
 ### 4.2 Materiales del estudiante
