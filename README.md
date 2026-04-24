@@ -50,7 +50,7 @@ La medición de longitud es un indicador antropométrico de bienestar para neona
 
 La medición del peso en una incubadora neonatal es fundamental para el seguimiento clínico del recién nacido, ya que permite evaluar el crecimiento, detectar alteraciones del balance hídrico y ajustar con precisión la administración de líquidos, nutrición y medicamentos. En pacientes prematuros o de bajo peso, pequeñas variaciones ponderales pueden reflejar cambios clínicamente relevantes, por lo que el monitoreo del peso constituye un parámetro esencial de seguridad y de toma de decisiones
 
-### 3.3 Medición de peso
+### 3.3.1 Medición de peso
 
 La guía plantea la posibilidad de incorporar una galga extensiométrica o sensor de fuerza para estimar el peso del recién nacido, mostrando el resultado en una pantalla LCD , OLED o en displays de 7 segmentos. Esta variable es clínicamente importante debido a su utilidad en el seguimiento neonatal.
 
