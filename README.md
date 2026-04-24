@@ -114,24 +114,30 @@ En la siguiente imagen puede observarse un diagrama que corresponde a la lógica
 A partir de esa señal se hacen tres evaluaciones:
 
 Se compara si la temperatura es mayor o igual que Tmin
+
 Se compara si la temperatura es menor o igual que Tmax
+
 y luego ambas condiciones se combinan con una compuerta AND
 
 Eso significa que el sistema está verificando si la temperatura está dentro de la banda de operación definida por los límites:
 
 Tmin = temperatura mínima permitida
+
 Tmax = temperatura máxima permitida
+
 Qué sale del diagrama
 
 El bloque genera tres salidas:
 
 -Tmin
+
 -Tmax
+
 -Una señal lógica que vale 1 si la temperatura está dentro del rango y 0 si está fuera del rango
 
 Los bloques double solo convierten esas señales al tipo numérico para poder visualizarlas o usarlas en Simulink sin problemas de tipo de dato.
 
-Interpretación física
+## Interpretación física
 
 Ese bloque no está calentando todavía por sí solo; más bien está diciendo:
 
@@ -195,7 +201,7 @@ En la siguiente imagen puede observarse una simulación del circuito de medició
 <img width="1024" height="359" alt="image" src="https://github.com/user-attachments/assets/712a7f59-ab80-4ffc-829c-fed1b15e4454" />
 
 
-**Figura 5.** Respuesta de simulación del sistema de control de temperatura.
+**Figura 4.** Respuesta de simulación del sistema de control de temperatura.
 
 El código utilizado para realizar la sección de medición de peso fue el siguiente programado en ARDUINO IDE con un microcontrolador Arduino UNO. Se usó una galga extensiométrica de 5 kg junto con su módulo HX711 y los datos se visualizaron en una pantalla OLED.
 
@@ -305,13 +311,13 @@ void loop() {
 
 <img width="900" height="1600" alt="image" src="https://github.com/user-attachments/assets/e27c6b1b-a6b1-44b3-808a-6e7b9c7b59e2" />
 
-**Figura 6.** Circuito montado del sistema de medición de peso.
+**Figura 5.** Circuito montado del sistema de medición de peso.
 
 ### 6.3 Prototipo construido
 
 <img width="1280" height="960" alt="image" src="https://github.com/user-attachments/assets/7d7df6d4-5f64-439d-aedf-9b408e8390d2" />
 
-**Figura 7.** Vista general de la incubadora neonatal a escala.
+**Figura 6.** Vista general de la incubadora neonatal a escala.
 
 
 ## 7. Resultados
@@ -334,7 +340,7 @@ En la siguiente imagen puede observarse las temperaturas medidas por el termisto
 
 <img width="739" height="646" alt="image" src="https://github.com/user-attachments/assets/a4c1f46f-90a5-4e22-8d5f-f193ba5ae28b" />
 
-**Figura 8.** Valores en monitor serial.
+**Figura 7.** Valores en monitor serial.
 
 - Temperatura mínima observada: 35.0
 - Temperatura máxima observada: 38.6
@@ -351,7 +357,7 @@ Durante la prueba de calibración del sistema de medición de peso se utilizó u
 
 <img width="960" height="1280" alt="image" src="https://github.com/user-attachments/assets/984feab1-005d-42fb-85d9-eacf95982a31" />
 
-**Figura 9.** Valores en monitor serial.
+**Figura 8.** Valores en monitor serial.
 
 ### 7.4 Estimación de costos
 
@@ -424,7 +430,7 @@ Sería necesario incorporar sensores clínicamente validados, alarmas de segurid
 
 ### 10.3 ¿Qué semejanzas hay entre una incubadora neonatal y una servo-cuna?
 
-Ambos sistemas buscan mantener condiciones térmicas adecuadas para el neonato mediante mecanismos de control. La diferencia principal es que la incubadora ofrece un entorno cerrado con mayor control del microambiente, mientras que la servo-cuna suele operar en una estructura más abierta.
+Ambos sistemas buscan mantener condiciones térmicas adecuadas para el neonato mediante mecanismos de control. La diferencia principal es que la incubadora ofrece un entorno cerrado con mayor control del microambiente, mientras que la servo-cuna suele operar en una estructura más abierta en el que se puede dar manejos en el caso de realizar reanimación o algún procedimiento donde se necesite tener acceso completo al neonato.
 
 ## 11. Bibliografía
 
